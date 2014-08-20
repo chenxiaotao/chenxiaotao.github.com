@@ -1,0 +1,17 @@
+{% if site.safe and site.JB.analytics.provider and page.JB.analytics != false %}
+
+{% case site.JB.analytics.provider %}
+{% when "google" %}
+  {% include JB/analytics-providers/google %}
+{% when "getclicky" %}
+  {% include JB/analytics-providers/getclicky %}
+{% when "mixpanel" %}
+  {% include JB/analytics-providers/mixpanel %}
+{% when "custom" %}
+  {% include custom/analytics %}
+{% endcase %}
+
+{% endif %}
+<div style="display:none">
+<script src="http://s20.cnzz.com/stat.php?id=5213497&web_id=5213497" language="JavaScript"></script>
+</div>
