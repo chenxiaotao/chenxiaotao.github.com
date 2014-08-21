@@ -10,7 +10,7 @@ pygments: true
 # Themes are encouraged to use these universal variables
 # so be sure to set them if your theme uses them.
 #
-title : ZhongHua Team's blog
+title : Ruby Team's blog
 tagline: Site Tagline
 author :
   name : ZhongHua
