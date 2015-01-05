@@ -1,7 +1,7 @@
 ---
 layout: page
-title: Finding the best practice
-tagline: 思考，笔记和分享
+title: No pains, no gains
+tagline: 思考，笔记，分享
 ---
 {% include JB/setup %}
 
@@ -21,7 +21,7 @@ tagline: 思考，笔记和分享
             {{ post.date | date: "%B %e, %Y" }}
           </strong>
             | {{ post.categories[1] }}
-            | <a href="http://zhongfox.github.com{{ post.url }}/#uyan_frame" data-disqus-identifier="{{ post.url }}">comments</a>
+            | <a href="http://chenxiaotao.github.com{{ post.url }}/#uyan_frame" data-disqus-identifier="{{ post.url }}">comments</a>
         </p>
         {% if forloop.last %}
         {% else %}

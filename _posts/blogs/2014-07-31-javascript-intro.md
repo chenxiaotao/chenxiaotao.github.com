@@ -2,7 +2,7 @@
 layout: post
 categories: [blog, javascript]
 title: Javascript 特性介绍
-tags : [函数, 闭包, 原型链, ruby, zhongfox]
+tags : [javascript]
 ---
 {% include JB/setup %}
 
