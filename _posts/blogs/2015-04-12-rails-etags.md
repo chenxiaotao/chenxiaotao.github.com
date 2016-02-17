@@ -38,7 +38,7 @@ eg:
 ```ruby
 class PostsController < ApplicationController
   def show
-    @post = Post. find(params[:id])
+    @post = Post.find(params[:id])
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @post  }
@@ -53,12 +53,16 @@ end
 
 Rails生成响应内容，并根据生成的响应内容生成MD5 散列的ETag，类似下面：
 
-	headers['ETag'] = Digest::MD5.hexdigest(body)
+```ruby
+headers['ETag'] = Digest::MD5.hexdigest(body)
+```
+
 通过每次生成的响应内容来生成ETag并不能高效的利用服务器，因为这样服务器将耗时调用数据库和渲染模板文件。这时可以通过Rails的helper方法fresh_when和stale?来实现自定义的ETag
 
 ---
 
 ## 4.使用fresh_when和stale?实现自定义的ETag
+
 ### (1).fresh_when
 
 对于一个简单的文章页面 posts#show 页面，可以使用以下缓存
@@ -111,7 +115,7 @@ end
 ```ruby
 class PostsController < ApplicationController
   def show
-    @post = Post. find(params[:id])
+    @post = Post.find(params[:id])
     if stale?(@post, current_user_id: current_user.id)
       respond_to do |format|
         format.html # show.html.erb
@@ -142,7 +146,7 @@ Rails 3 和Rails 4都默认使用ETags机制处理浏览器缓存，但Rails 4�
 class PostsController < ApplicationController
   etag { current_user.id  }
   def show
-    @post = Post. find(params[:id])
+    @post = Post.find(params[:id])
     if stale?(@post)
       respond_to do |format|
         format.html # show.html.erb

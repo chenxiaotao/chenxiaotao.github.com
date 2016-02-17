@@ -4,7 +4,16 @@ permalink: /:categories/:year/:month/:day/:title
 
 exclude: [".rvmrc", ".rbenv-version", "README.md", "Rakefile", "changelog.md"]
 auto: true
-markdown: rdiscount
+markdown: kramdown
+kramdown:
+  input:  GFM
+  extensions:
+    - autolink
+    - footnotes
+    - smart
+  use_coderay: true
+  coderay:
+    coderay_line_numbers:  nil
 pygments: true
 
 # Themes are encouraged to use these universal variables
