@@ -1,8 +1,8 @@
 ---
 layout: post
 title: ruby元编程读书笔记--对象模型
-subtitle:   "Ruby中的对象是什么样的呢?"
-date:       2015-09-12 12:00:00
+subtitle:   "Ruby中的对象的特性"
+date:       2015-09-12
 author:     "Sheldon"
 header-img: "img/post-bg-ruby-metaprogramming-1.jpg"
 tags:       

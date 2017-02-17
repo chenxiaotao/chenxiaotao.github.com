@@ -1,8 +1,8 @@
 ---
 layout:     post
-title:      rails 中的Etags
-subtitle:   "rails的缓存命中策略"
-date:       2015-04-12 12:00:00
+title:      Rails中的Etags
+subtitle:   "Rails的客户端缓存"
+date:       2015-04-12
 author:     "Sheldon"
 header-img: "img/post-bg-rails-etags.jpg"
 tags:       
@@ -35,7 +35,6 @@ tags:
 
 ## 3.Rails中的ETag
 在Rails中，已经默认使用ETag机制，不需要额外操作，以下代码将自动使用Rails的默认ETag缓存机制
-
 ~~~ruby
 class PostsController < ApplicationController
   def show
@@ -53,7 +52,6 @@ end
 ~~~
 
 Rails生成响应内容，并根据生成的响应内容生成MD5 散列的ETag，类似下面：
-
 ~~~ ruby
 headers['ETag'] = Digest::MD5.hexdigest(body)
 ~~~
