@@ -22,7 +22,7 @@ RSS: false
 # from 2016, 'pygments' is unsupported on GitHub Pages. Use 'rouge' for highlighting instead.
 highlighter: rouge
 permalink: pretty
-paginate: 50
+paginate: 20
 exclude: ["less","node_modules","Gruntfile.js","package.json","README.md"]
 anchorjs: true                          # if you want to customize anchor. check out line:181 of `post.html`
 
@@ -42,13 +42,10 @@ kramdown:
 
 
 # Disqus settings
-#disqus_username: _your_disqus_short_name_
+disqus_username: Sheldon_Chen
 
-# Duoshuo settings
-duoshuo_username: sheldon
-# Share component is depend on Comment so we can NOT use share only.
-duoshuo_share: true                     # set to false if you want to use Comment without Sharing
-
+# Netease setttings
+netease_comment: false
 
 # Analytics settings
 # Baidu Analytics
@@ -60,7 +57,7 @@ ba_track_id: 2415bdc8b408bc6efa375ac8a3d3d8b9
 
 # Sidebar settings
 sidebar: true                           # whether or not using Sidebar.
-sidebar-about-description: "草根程序员, 篮球, 游戏"
+sidebar-about-description: "认真负责的程序员<br>用博客记录成长"
 sidebar-avatar: /img/sheldon.png      # use absolute URL, seeing it's used in both `/` and `/about/`
 
 
