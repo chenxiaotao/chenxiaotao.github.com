@@ -4,9 +4,10 @@ title:      Rails中的Etags
 subtitle:   "Rails的客户端缓存"
 date:       2015-04-12
 author:     "Sheldon"
-header-img: "img/post-bg-rails-etags.jpg"
+header-img: "img/pic/post/rails-etags.jpg"
 tags:       
   - rails
+  - cache
 ---
 
 ## 1.什么是ETag

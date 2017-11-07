@@ -1,14 +1,14 @@
 ---
-layout: post
-title: vim实用技巧
+layout:     post
+title:      vim实用技巧
 subtitle:   "VIM需要活学活用"
 date:       2017-04-15
 author:     "Sheldon"
-header-img: "img/post-bg-vim-skill.jpg"
+header-img: "img/pic/post/vim-skill.jpg"
 tags:       
   - vim
-  - linux
   - IDE
+  - 读书笔记
 ---
 
 ### 前言

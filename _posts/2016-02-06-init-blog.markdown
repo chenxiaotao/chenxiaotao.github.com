@@ -1,0 +1,37 @@
+---
+layout:     post
+title:      静态博客搭建
+subtitle:   "GitHub Pages and jekyll"
+date:       2016-02-06
+author:     "Sheldon"
+header-img: "img/pic/post/init-blog.jpg"
+tags:       
+  - 环境搭建
+  - jekyll
+  - links
+---
+
+该博客使用了jekyll 搭建的基于 Github Pages 的静态页面，页面主题和框架采用了Hux的博客具体请参见:
+
+> * [Hux blog 模板](https://github.com/Huxpro/huxpro.github.io/blob/master/README.zh.md)
+
+关于Github如何搭建自己的静态博客以及搭建过程中的一些细节，可以参考:
+
+> * [GitHub Pages 静态博客](http://alfred-sun.github.io/blog/2014/12/05/github-pages/)
+
+### 关于公共评论系统
+
+原来博客使用的国内的多说评论，由于其已经关闭，不在提供服务，故将其迁移到disqus上。首先进入[disqus的主页](https://disqus.com/)，这里可以直接使用你的github账户快速登录，或者自己注册一个新的账户，然后回到主页，点击GET STARTED进入选择项
+<img src="/assets/images/init_blog/get_start.jpg" />
+
+选择下面那一项进入下一步
+
+<img src="/assets/images/init_blog/new_site.jpg" />
+
+这里输入你的Website Name，并记住然后再下面的页面中输入相关信息，保存即可
+
+<img src="/assets/images/init_blog/config.jpg" />
+
+至此，你的disqus设置完毕，接下来，需要回到blog里，_`_config.yml` 中的url确保与图三中的url一致，将`disqus_username`的命中设置为图二中的Website Name，把代码推到github上去看看效果吧
+
+由于这个是国外的服务，在国内使用，难免会出现网络不好或者被墙的情况，实属正常。在最新看到的Hux的博客里已经加入了网易云评论，这里也没有具体去尝试，先这样吧。

@@ -1,12 +1,13 @@
 ---
-layout: post
-title: Node.js 环境搭建
+layout:     post
+title:      Node.js 环境搭建
 subtitle:   "node的基础环境搭建"
 date:       2017-02-16
 author:     "Sheldon"
-header-img: "img/post-bg-new-nodejs.jpg"
+header-img: "img/pic/post/new-nodejs.jpg"
 tags:       
   - nodejs
+  - 开发环境
 ---
 
 ### 一、前言

@@ -1,12 +1,13 @@
 ---
-layout: post
-title: 理解Promise
+layout:     post
+title:      Promise
 subtitle:   "使用Promise对付JavaScript中的回调"
 date:       2017-03-27
 author:     "Sheldon"
-header-img: "img/post-bg-new-nodejs.jpg"
+header-img: "img/pic/post/new-nodejs.jpg"
 tags:       
   - nodejs
+  - javascript
 ---
 
 ### 一、什么是Promise
