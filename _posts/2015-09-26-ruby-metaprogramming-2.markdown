@@ -64,10 +64,13 @@ method_missing利用的机制是，当一个对象进行某个方法调用的时
 
 严格意义上将method_missing方法，并不算是明确的定义(不会出现在methods列表中)，
 其本质是通过方法查找的机制来截获调用信息进而合理的给出相应方法的回应。
-有点类似与异常处理中的抛出异常，一层一层的往外抛。
+有点类似与异常处理中的抛出异常，一层一层的往外抛
+
+被method_missing 方法处理的消息，从调用者的角度来看，跟普通方法没有什么区别，而实际上接收者没有对应的方法，
+这称为**幽灵方法**
 
 当我们需要定义很多相似的方法时候，可以通过重写method_missing方法，对相似的方法进行统一做出回应，
-这样一来其行为就类似与调用定义过的方法一样。
+这样一来其行为就类似与调用定义过的方法一样
 
 ~~~ruby
 class Roulette
@@ -88,20 +91,45 @@ puts number_of.bob
 puts number_of.kitty
 ~~~
 
+`respond_to?`是用来判断一个对象对参数中的值有无响应，直白一点就是判断一个对象有没有这个方法，或者属性；
+如果没有，那么其会调用一个`respond_to_missing?`的方法，这个方法被定义在BasicObject上，并且总是返回false。
+前面说的过，幽灵方法实际上并不是真正的方法，所以`respond_to?`不会给予正确的响应，因此，我们在覆盖method_missing
+方法的时候，同时也要覆盖`respond_to_missing?`方法
+
+与method_missing类似，还有关于常量的`const_missing`方法，当引用一个不存在的常量时，Ruby会把这个常量名作为一个符号传递给const_missing方法
+
+~~~ruby
+calss Module
+  def const_missing(const_name)
+    case const_name
+    when :Task
+      Rake.application.const_warning(const_name)
+      Rake::Task
+    when :FileTask
+      Rake.application.const_warning(const_name)
+      Rake::FileTask
+    end
+  end
+end
+~~~
+
 #### 动态代理
 对一些封装过的对象，通过method_missing方法收集调用，并把这些调用转发到被封装的对象，这一过程称为**动态代理**，
 其中method_missing体现了动态，转发体现了代理
 
-#### const_missing方法
-与method_missing类似，还有关于常量的const_missing方法，当引用一个不存在的常量时，Ruby会把这个常量名作为一个符号传递给const_missing方法。
-
 #### 白板类(blank slates)
-拥有极少方法的类称为白板类，通过继承BasicObject类，可以迅速的得到一个白板类。除了这种方法以外，还可以通过删除方法来将一个普通类变为白板类。
+在使用幽灵方法的过程中，有时候会出乎意料的调用的对象真实存在的方法，因为无法调用的method_missing这一步来，
+如果因为这种问题，我们需要删除大量方法并不值得，故ruby提供了一个**白板类**
+拥有极少方法的类称为白板类，通过继承BasicObject类，可以迅速的得到一个白板类。
+除了这种方法以外，还可以通过删除方法来将一个普通类变为白板类
 
-#### 删除方法
+删除方法的两种方式
+
 * `Module#undef_method` 会删除所有(包括继承而来的)方法
 * `Module#remove_method` 只删除接受者自己的方法，而保留继承来的方法
 
-#### 动态方法与Method_missing的使用原则
-当可以使用动态方法时候，尽量使用动态方法。除非必须使用method_missing方法(方法特别多的情况)，否则尽量少使用它。
+#### 动态方法与幽灵方法的对比
+幽灵方法固然很牛，但是他所带来的的风险也是巨大的；主要是幽灵方法无迹可寻，一旦出现问题，很难排查，而动态方法作为真实存在的方法，
+自然我们在操作上会直接得多，故使用这方面元编程技术我们遵循：
+**当可以使用动态方法时候，尽量使用动态方法，除非必须使用幽灵方法，否则尽量不要使用**
 
