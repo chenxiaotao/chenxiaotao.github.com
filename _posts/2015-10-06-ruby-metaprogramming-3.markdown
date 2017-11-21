@@ -63,6 +63,24 @@ end
 #### 共享作用域
 将一组方法定义到，某个变量的扁平作用域中，可以保证变量仅被有限的几个方法所共享。这种方式称为共享作用域
 
+~~~ruby
+def define_methods
+  shared = 0
+  Kernel.send :define_method, :counter do
+    shared
+  end
+  Kernel.send :define_method, :inc do |x|
+    shared += x
+  end
+end
+
+define_methods
+
+counter       # => 0
+inc(3)
+counter       # => 3
+~~~
+
 #### instance_eval方法
 这个`BasicObject#instance_eval`有点类似JS中的bind方法，不同的时，bind是将this传入到对象中，
 而instance_eval则是将代码块(上下文探针Context Probe)传入到指定的对象中，一个是传对象，一个是传执行体。
@@ -77,7 +95,7 @@ end
 obj = MyClass.new
 
 obj.instance_eval do
-  self    #=> #<MyClass:0x33333 @v=1>
+  self    #=> #<MyClass:0xxxxxx @v=1>
   @v      #=> 1  
 end
 
