@@ -7,7 +7,6 @@ author:     "Sheldon"
 header-img: "img/pic/post/rails-etags.jpg"
 tags:       
   - rails
-  - cache
 ---
 
 ## 1.什么是ETag

@@ -7,9 +7,6 @@ author:     "Sheldon"
 header-img: "img/pic/post/ruby-metaprogramming.jpg"
 tags:       
   - ruby
-  - 元编程
-  - 面向对象
-  - 读书笔记
 ---
 
 #### 类的返回值

@@ -6,8 +6,7 @@ date:       2017-02-16
 author:     "Sheldon"
 header-img: "img/pic/post/new-nodejs.jpg"
 tags:       
-  - nodejs
-  - 开发环境
+  - javascript
 ---
 
 ### 一、前言

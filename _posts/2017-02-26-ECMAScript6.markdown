@@ -7,8 +7,6 @@ author:     "Sheldon"
 header-img: "img/pic/post/new-nodejs.jpg"
 tags:       
   - javascript
-  - ES6
-  - nodejs
 ---
 
 ### let + const

@@ -7,8 +7,6 @@ author:     "Sheldon"
 header-img: "img/pic/post/init-blog.jpg"
 tags:       
   - 环境搭建
-  - jekyll
-  - links
 ---
 
 ### 前言

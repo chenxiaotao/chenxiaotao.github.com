@@ -7,7 +7,6 @@ author:     "Sheldon"
 header-img: "img/pic/post/shawdow-time.jpg"
 tags:       
   - 自我提升
-  - 读书笔记
 ---
 
 ### 暗时间

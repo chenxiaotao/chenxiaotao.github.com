@@ -6,7 +6,6 @@ date:       2017-03-27
 author:     "Sheldon"
 header-img: "img/pic/post/new-nodejs.jpg"
 tags:       
-  - nodejs
   - javascript
 ---
 

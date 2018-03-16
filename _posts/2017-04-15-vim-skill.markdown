@@ -6,9 +6,7 @@ date:       2017-04-15
 author:     "Sheldon"
 header-img: "img/pic/post/vim-skill.jpg"
 tags:       
-  - vim
   - IDE
-  - 读书笔记
 ---
 
 ### 前言

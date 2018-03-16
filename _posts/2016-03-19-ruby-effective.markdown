@@ -7,8 +7,6 @@ author:     "Sheldon"
 header-img: "img/pic/post/ruby-effective.jpg"
 tags:       
   - ruby
-  - rails
-  - 日常积累
 ---
 
 ### Proc和lambda的区别
