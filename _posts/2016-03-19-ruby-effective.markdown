@@ -107,12 +107,7 @@ Foo.baz # => NoMethodError: private method `baz' called for Foo:Class
 * 把私有类方法放到`class << self`后的块中
 * 使用`private_class_method :method_name`注明
 
-### rails中save过程逻辑
-update：
-
-validate -> before_save -> before_update -> after_update -> after_save -> after_commit
-
-create：
-
-validate -> before_save -> before_create -> after_create -> after_save -> after_commit
-
+### rails中save什么时候会终止保存？
+* 在`before_save`和`before_create`中，回调方法返回 false 或抛出异常，整个回调链都会终止执行，撤销事务
+* 而在`after_create`和`after_save`中，回调只有抛出异常才能达到相同的效果。
+* `after_commit`和`after_rollback`并不在save的transaction中，commit的CallbackChain中异常后的其他的Callback都没有执行。

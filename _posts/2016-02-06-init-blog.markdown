@@ -11,13 +11,35 @@ tags:
   - links
 ---
 
+### 前言
 该博客使用了jekyll 搭建的基于 Github Pages 的静态页面，页面主题和框架采用了Hux的博客具体请参见:
 
 > * [Hux blog 模板](https://github.com/Huxpro/huxpro.github.io/blob/master/README.zh.md)
 
-关于Github如何搭建自己的静态博客以及搭建过程中的一些细节，可以参考:
+GitHub Pages 有以下几个优点:
 
-> * [GitHub Pages 静态博客](http://alfred-sun.github.io/blog/2014/12/05/github-pages/)
+* 轻量级的博客系统，没有麻烦的配置
+* 免费空间，享受 Git 版本管理功能
+* 使用标记语言，比如 <a href="http://wowubuntu.com/markdown/">Markdown</a>
+* 无需自己搭建服务器
+* 可以绑定自己的域名
+
+当然他也有缺点:
+
+* 使用 Jekyll 模板系统，相当于静态页发布，适合博客，文档介绍等
+* 动态程序的部分相当局限，比如没有评论，不过还好我们有解决方案
+* 基于 Git，很多东西需要定制，不像 Wordpress 有强大的后台
+* 根据 GitHub 的限制，对应的每个站有 [1GB 免费空间](https://help.github.com/articles/troubleshooting-github-pages-build-failures/#size-limits)
+* 不适合大型网站，因为没有用到数据库，每运行一次都必须遍历全部的文本文件，网站越大，生成时间越长（可以通过上传 Jekyll 本地最终生成的网页来解决）
+* 网站源码基本上公开，被人 Fork 后，文章转载泛滥
+
+作为个人博客来说，简洁清爽的表达自己的工作、心得，就已达目标，所以GitHub Pages是我认为此需求最完美的解决方案了
+
+### 拓展阅读
+
+> * [How Jekyll Works](http://jekyllbootstrap.com/lessons/jekyll-introduction.html)  介绍 Jekyll 作为**解析引擎**的工作机制，以及解析文件、生成整个网站过程
+> * [Jekyll Liquid API](http://jekyllbootstrap.com/api/jekyll-liquid-api.html)  介绍了 Liquid 的一些常用 API 及支持**命令语句**
+> * [GitHub Pages](http://jekyllrb.com/docs/github-pages/)  介绍了如何在 **GitHub Pages** 部署静态网站
 
 ### 关于公共评论系统
 
