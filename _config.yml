@@ -69,13 +69,18 @@ featured-condition-size: 1              # A tag will be featured if the size of 
 # Friends
 friends: [
     {
-        title: "Hux Blog",
-        href: "http://huangxuan.me"
-    },{
         title: "zhongfox",
-        href: "http://zhongfox.github.io"
+        href: "https://zhongfox.github.io"
     },{
         title: "starzhou",
-        href: "http://www.starzhou.com"
+        href: "https://www.starzhou.com"
+    },{
+        title: "zouchao",
+        href: "https://zouchao.me"
+    },{
+        title: "鱼妖",
+        href: "https://notes.miaowu.org"
     }
+
+
 ]

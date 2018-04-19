@@ -24,7 +24,8 @@ result #=> MyClass
 Ruby中并没有类似当前对象self一样的明确引用，不过在追踪当前类的时候，可以遵循下面几条:
 
 * 在程序顶层，当前类是Object，这是main对象所属的类
-* 在一个方法中，当前类就是当前对象的类。(在一个方法中用def关键字定义另一个方法，新定义的方法会定义在self所属的类中)
+* 在一个方法中，当前类就是当前对象的类。（在一个方法中用def关键字定义另一个方法，
+新定义的方法会定义在self所属的类中）
 
   ~~~ruby
   class C
@@ -41,10 +42,10 @@ Ruby中并没有类似当前对象self一样的明确引用，不过在追踪当
   C.instance_methods(false)   #=> [:m1, :m2]
   ~~~
 
-* 当用class关键字打开一个类时(或module关键字打开模块)，那个类称为当前类
+* 当用class关键字打开一个类时（或module关键字打开模块），那个类称为当前类
 
 #### class_eval方法
-* `Module#class_eval`(别名是`module_eval`)，会在一个已存在的类的上下文中执行一个块。使用该方法可以在不需要class关键字的前提下，打开类
+* `Module#class_eval`（别名是`module_eval`），会在一个已存在的类的上下文中执行一个块。使用该方法可以在不需要class关键字的前提下，打开类
 * `Module#class_eval`与`Object#instance_eval`方法相比，`instance_eval`方法只能修改self，而`class_eval`方法可以同时修改self与当前类
 * `class_eval`的另一个优势就是可以利用扁平作用域，规避class关键字的作用域门问题
 * `instance_eval`与`class_eval`的选择：
@@ -52,7 +53,7 @@ Ruby中并没有类似当前对象self一样的明确引用，不过在追踪当
 
 
 #### 单件方法
-Ruby允许给单个对象增加方法,这种只针对单个对象生效的方法，称为单件方法
+Ruby允许给单个对象增加方法，这种只针对单个对象生效的方法，称为单件方法
 
 ~~~ruby
 str = "just a regular string"
@@ -88,13 +89,14 @@ end
 上面的object可以是对象的引用、常量类名或者self。
 
 #### 类宏
-Ruby对象没有属性，如果希望得到一些像属性的东西，需要分别定义一个读方法和写方法（也就是java、objc中的set和get方法)，最直接的可以这样:
+Ruby对象没有属性，如果希望得到一些像属性的东西，需要分别定义一个读方法和写方法（也就是java中的set和get方法)，最直接的可以这样:
 
 ~~~ruby
 class MyClass
   def my_attribute=(value)
-    @my_attribute =value
+    @my_attribute = value
   end
+
   def my_attribute
     @my_attribute
   end
@@ -126,7 +128,7 @@ obj = MyClass.new
 def obj.my_singleton_method; end
 ~~~
 
-首先,单件方法不会在obj中，因为obj不是一个类，其次它也不在MyClass中，那样的话所有的MyClass都应该能共享调用这个方法，也就构不成单件类了。
+首先，单件方法不会在obj中，因为obj不是一个类，其次它也不在MyClass中，那样的话所有的MyClass都应该能共享调用这个方法，也就构不成单件类了。
 同理，单件方法也不能在祖先链的某个位置(类似superclass: Object)中。正确的位置是在单件类中，不同的是这类与普通的类还是有稍稍不同的。
 它是一个对象特有的隐藏类，也可以称其为元类或本征类。
 

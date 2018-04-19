@@ -13,13 +13,13 @@ tags:
 * 代码块的定义方式有{}花括号与do...end关键字定义两种，程序员们习惯单行用花括号，多行用do...end
 * 代码块只有在方法调用的时候才可以定义，块会被直接传递给这个方法，判断某个方法调用中是否包含代码块，
 可以通过`Kernel#block_given?`
-* 代码块不仅可以有自己的参数，也会有返回值，往往没有代码块中的最后一行执行结果会被作为返回值返回
+* 代码块不仅可以有自己的参数，也会有返回值，像方法一样，代码块中的最后一行执行结果会被作为返回值返回
 * 代码块之所以可以执行，是因为其不仅包含代码，同时也涵盖一组相应绑定，即执行环境，也可以称之为上下文环境。
 代码块可以携带这个上下文环境，到任何一个代码块可以达到的地方。
 也就可以说，一个代码块是一个闭包，当定义一个代码块时，它会捕获当前环境中的绑定，并带它们四处流动
 
 #### 作用域
-Ruby中不具备嵌套作用域(即在内部作用域，可以看到外部作用域的)的特点，它的作用域是截然分开的，
+Ruby中不具备嵌套作用域（即在内部作用域，可以看到外部作用域的）的特点，它的作用域是截然分开的，
 一旦进入一个新的作用域，原先的绑定会被替换为一组新的绑定
 
 程序会在三个地方关闭前一个作用域，同时打开一个新的作用域，它们是:
@@ -28,7 +28,7 @@ Ruby中不具备嵌套作用域(即在内部作用域，可以看到外部作用
 * 模块定义 module
 * 方法定义 def
 
-上面三个关键字，每个关键字对应一个作用域门(进入)，相应的end则对应离开这道门
+上面三个关键字，每个关键字对应一个作用域门（进入），相应的end则对应离开这道门
 
 #### 扁平化作用域
 
@@ -66,6 +66,7 @@ def define_methods
   Kernel.send :define_method, :counter do
     shared
   end
+
   Kernel.send :define_method, :inc do |x|
     shared += x
   end
@@ -80,7 +81,7 @@ counter       # => 3
 
 #### instance_eval方法
 这个`BasicObject#instance_eval`有点类似JS中的bind方法，不同的时，bind是将this传入到对象中，
-而instance_eval则是将代码块(上下文探针Context Probe)传入到指定的对象中，一个是传对象，一个是传执行体。
+而instance_eval则是将代码块（上下文探针Context Probe）传入到指定的对象中，一个是传对象，一个是传执行体。
 通过这种方式就可以在instance_eval中的代码块里访问到调用者对象中的变量
 
 ~~~ruby
@@ -133,19 +134,19 @@ D.new.twisted_method   # => "@x: 1, @y: 2"
 Proc是由块转换来的对象。创建一个Proc共有四种方法,分别是:
 
 ~~~ruby
-# 法一
+# 方法一
 inc = Proc.new { | x | x + 1}
 inc.call(2)  #=> 3
 
-# 法二
+# 方法二
 inc = lambda {| x | x + 1 }
 inc.call(2)  #=> 3
 
-# 法三
+# 方法三
 inc = ->(x) { x + 1}
 inc.call(2) #=> 3
 
-# 法四
+# 方法四
 inc = proc {|x| x + 1 }
 inc.call(2) #=> 3
 ~~~
@@ -177,16 +178,26 @@ my_method("Hello", &my_proc)
 
 二者之间主要的差异有以下两点:
 
-* Proc、Lambda的return含义不同; lambda中的return表示的仅仅是从lambda中返回。而proc中，return的行为则不同，其并不是从proc中返回，而是从定义proc的作用域中返回。即相当与在你的业务代码处返回。
+* Proc、Lambda的return含义不同; lambda中的return表示的仅仅是从lambda中返回。
+而proc中并不是从proc中返回，而是从定义proc的作用域中返回。即相当于在你的业务代码处返回
 
   ~~~ruby
   def double(callable_object)
-    p = Proc.new { return 10 }
-    result = p.call   
+    result = callable_object.call   
     return result * 2 # 不可达的代码
   end
 
-  double #=> 10
+  #p = Proc.new { return 10 }
+  #double(p) #=> LocalJumpError 无法返回顶层作用域
+  p = Proc.new { 10 }
+  double(p) #=> 20
+
+  def another_double(callable_object)
+    callable_object.call * 3
+  end
+
+  l = -> { return 10 }
+  another_double(l) #=> 30
   ~~~
 
 * Proc、Lambda的return参数检查方式不同；Proc的参数检查要比Lambda参数检查要更宽松一些，
@@ -194,7 +205,7 @@ my_method("Hello", &my_proc)
 但是对于lambda则不同，如果出现参数不匹配的情况，其往往会报ArgumentError异常，中断程序
 
   ~~~ruby
-  p = Proc.new { |a, b|  [a,b] }
+  p = Proc.new { |a, b|  [a, b] }
   p.call(1,2,3) #=> [1, 2]
   p.call(1) #=> [1, nil]
   ~~~
@@ -231,12 +242,12 @@ m.call   #=> 1
 ~~~
 
 #### 自由方法
-与普通方法类似，不同的是它会从最初定义它的类或模块中脱离出来(即脱离之前的作用域)，
+与普通方法类似，不同的是它会从最初定义它的类或模块中脱离出来（即脱离之前的作用域），
 通过`Method#unbind`方法，可以将一个方法变为自由方法。同时，
 你也可以通过调用`Module#instance_method`获得一个自由方法
 
 ~~~ruby
-module MyClass
+module MyModule
   def my_method
     42
   end
@@ -257,5 +268,5 @@ unbound.class  #=> UnboundMethod
 
 ~~~ruby
 String.send :define_method, :another_method, unbound
-"abc".anther_method  #=> 42
+"abc".another_method  #=> 42
 ~~~
