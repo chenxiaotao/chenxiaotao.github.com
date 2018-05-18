@@ -7,6 +7,7 @@ author:     "Sheldon"
 header-img: "img/pic/post/new-nodejs.jpg"
 tags:       
   - javascript
+  - 环境搭建
 ---
 
 ### 一、前言

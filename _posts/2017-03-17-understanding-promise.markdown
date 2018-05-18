@@ -7,6 +7,7 @@ author:     "Sheldon"
 header-img: "img/pic/post/new-nodejs.jpg"
 tags:       
   - javascript
+  - nodejs
 ---
 
 ### 一、什么是Promise
