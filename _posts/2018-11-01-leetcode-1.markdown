@@ -1,0 +1,47 @@
+---
+layout:     post
+title:      Two Sum
+subtitle:   "每日一题01"
+date:       2018-10-01
+author:     "Sheldon"
+header-img: "img/pic/post/everyday.jpg"
+tags:       
+  - 算法
+---
+
+### 题目
+Given an array of integers, return indices of the two numbers such that they add up to a specific target.
+You may assume that each input would have exactly one solution, and you may not use the same element twice.
+Example:
+Given nums = [2, 7, 11, 15], target = 9,
+
+Because nums[0] + nums[1] = 2 + 7 = 9,
+return [0, 1].
+
+----------------
+给定一个整数数组和一个目标值，找出数组中和为目标值的两个数。
+你可以假设每个输入只对应一种答案，且同样的元素不能被重复利用。
+示例:
+给定 nums = [2, 7, 11, 15], target = 9
+
+因为 nums[0] + nums[1] = 2 + 7 = 9
+所以返回 [0, 1]
+
+### 解题思路
+遍历一遍，同时使用hash把已经遍历过的值作为key，在数组中的index 存到value；遍历时将目标值减去遍历值，然后用结果去hash里找，如果有对应的值；那么直接返回就ok
+
+### 解法
+
+```ruby
+# @param {Integer[]} nums
+# @param {Integer} target
+# @return {Integer[]}
+def two_sum(nums, target)
+  search = Hash.new
+  nums.each_with_index do |item, index|
+    i = search[target - item]
+    return [i, index] if i != nil
+    search[item] = index
+  end
+end
+```
