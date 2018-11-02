@@ -40,11 +40,13 @@ ruby解法
 # @return {Integer[]}
 def two_sum(nums, target)
   search = Hash.new
-  nums.each_with_index do |item, index|
-    i = search[target - item]
+  nums.each_with_index do |complement, index|
+    i = search[target - complement]
     return [i, index] if i != nil
-    search[item] = index
+    search[complement] = index
   end
+
+  raise "No two sum solution"
 end
 ```
 java解法
@@ -62,4 +64,3 @@ public int[] twoSum(int[] nums, int target) {
   throw new IllegalArgumentException("No two sum solution");
 }
 ```
-

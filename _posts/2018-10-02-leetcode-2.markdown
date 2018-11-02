@@ -1,0 +1,113 @@
+---
+layout:     post
+title:      Add Two Numbers
+subtitle:   "每日一题02"
+date:       2018-10-02
+author:     "Sheldon"
+header-img: "img/pic/post/everyday.jpg"
+tags:       
+  - 算法
+---
+
+
+### 题目
+You are given two non-empty linked lists representing two non-negative integers. The digits are stored in reverse order and each of their nodes contain a single digit. Add the two numbers and return it as a linked list.
+
+You may assume the two numbers do not contain any leading zero, except the number 0 itself.
+
+Example:
+
+```
+Input: (2 -> 4 -> 3) + (5 -> 6 -> 4)
+Output: 7 -> 0 -> 8
+Explanation: 342 + 465 = 807.
+```
+----------------
+
+给定两个非空链表来表示两个非负整数。位数按照逆序方式存储，它们的每个节点只存储单个数字。将两数相加返回一个新的链表。
+
+你可以假设除了数字 0 之外，这两个数字都不会以零开头。
+
+示例：
+
+```
+输入：(2 -> 4 -> 3) + (5 -> 6 -> 4)
+输出：7 -> 0 -> 8
+原因：342 + 465 = 807
+```
+
+### 解题思路
+先新建一个链表的虚拟头节点，然后同时开始遍历两个已知的链表，拿出两个数计算之和，注意点是需要记录一下上一次之后有无进位；然后把结果一次放到新建的链表后面，遍历完成之后，把新链第一个虚拟头结点去掉返回链表即可
+
+当然，大家也可以暴力一点，直接遍历两个已知链表，把结果取出来，倒序相加之后，在倒序放入链表返回；不过官方解法似乎使用的是上一种
+
+### 解法
+
+ruby解法
+
+```ruby
+# Definition for singly-linked list.
+# class ListNode
+#   attr_accessor :val, :next
+#   def initialize(val)
+#     @val = val
+#     @next = nil
+#   end
+# end
+
+# @param {ListNode} l1
+# @param {ListNode} l2
+# @return {ListNode}
+def add_two_numbers(l1, l2)
+  dummy_head = ListNode.new(0)
+  curr = dummy_head
+  carry = 0
+  while (l1 != nil || l2 != nil) do
+    num1 = l1 ? l1.val : 0
+    num2 = l2 ? l2.val : 0
+    l1 = l1.next if l1
+    l2 = l2.next if l2
+    sum = num1 + num2 + carry
+    curr.next = ListNode.new(sum % 10)
+    carry = sum >= 10 ? 1 : 0
+    curr = curr.next
+  end
+  curr.next = ListNode.new(1) if carry > 0
+  
+  dummy_head.next
+end
+```
+java解法
+
+```java
+/**
+ * Definition for singly-linked list.
+ * public class ListNode {
+ *     int val;
+ *     ListNode next;
+ *     ListNode(int x) { val = x; }
+ * }
+ */
+public ListNode addTwoNumbers(ListNode l1, ListNode l2) {
+  ListNode dummyHead = new ListNode(0);
+  ListNode curr = dummyHead;
+  int carry = 0;
+  while(l1 != null || l2 != null) {
+    int num1 = l1 != null ? l1.val : 0;
+    int num2 = l2 != null ? l2.val : 0;
+    int sum = num1 + num2 + carry;
+    carry = sum / 10;
+    curr.next = new ListNode(sum % 10);
+    curr = curr.next;
+    if (l1 != null) l1 = l1.next;
+    if (l2 != null) l2 = l2.next;
+  }
+
+  if (carry > 0) {
+    curr.next = new ListNode(carry);
+  }
+
+  return dummyHead.next;
+}
+```
+
