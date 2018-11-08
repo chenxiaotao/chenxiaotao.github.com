@@ -1,14 +1,13 @@
 ---
 layout:     post
 title:      Add Two Numbers
-subtitle:   "每日一题02"
+subtitle:   "每日一题02：两数相加"
 date:       2018-10-02
 author:     "Sheldon"
 header-img: "img/pic/post/everyday.jpg"
 tags:       
   - 算法
 ---
-
 
 ### 题目
 You are given two non-empty linked lists representing two non-negative integers. The digits are stored in reverse order and each of their nodes contain a single digit. Add the two numbers and return it as a linked list.
@@ -22,7 +21,7 @@ Input: (2 -> 4 -> 3) + (5 -> 6 -> 4)
 Output: 7 -> 0 -> 8
 Explanation: 342 + 465 = 807.
 ```
-----------------
+---
 
 给定两个非空链表来表示两个非负整数。位数按照逆序方式存储，它们的每个节点只存储单个数字。将两数相加返回一个新的链表。
 
@@ -43,9 +42,8 @@ Explanation: 342 + 465 = 807.
 
 ### 解法
 
-ruby解法
-
 ```ruby
+# ruby解法
 # Definition for singly-linked list.
 # class ListNode
 #   attr_accessor :val, :next
@@ -77,10 +75,10 @@ def add_two_numbers(l1, l2)
   dummy_head.next
 end
 ```
-java解法
 
 ```java
 /**
+ * java解法
  * Definition for singly-linked list.
  * public class ListNode {
  *     int val;
