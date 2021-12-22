@@ -6,3 +6,4 @@ node_modules
 *.sh
 *.swp
 .idea/
+.jekyll-cache/
